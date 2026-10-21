@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-label="Pit Wall banner with an original race car, a track map and a moving leaderboard">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A0A0F"/><stop offset="1" stop-color="#1A0B10"/></linearGradient>
+    <radialGradient id="glow" cx="30%" cy="70%" r="50%"><stop offset="0" stop-color="#E10600" stop-opacity=".28"/><stop offset="1" stop-color="#E10600" stop-opacity="0"/></radialGradient>
+    <pattern id="chk" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#fff"/><rect x="8" y="8" width="8" height="8" fill="#fff"/></pattern>
+    <linearGradient id="body" x1="0" x2="1"><stop offset="0" stop-color="#FF3B30"/><stop offset="1" stop-color="#B00020"/></linearGradient>
+    <filter id="gl"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <path id="trk" d="M880 70 C 960 60, 1120 70, 1130 130 C 1140 190, 1060 200, 1040 240 C 1020 285, 940 290, 900 260 C 860 230, 820 260, 790 240 C 750 210, 770 160, 800 130 C 820 100, 830 76, 880 70 Z"/>
+  </defs>
+  <style>
+    .t{font-family:'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif}.m{font-family:ui-monospace,Consolas,monospace}
+    .sp{animation:sp .7s linear infinite}.s2{animation-delay:.2s}.s3{animation-delay:.45s}
+    @keyframes sp{from{transform:translateX(120px);opacity:0}30%{opacity:.9}to{transform:translateX(-260px);opacity:0}}
+    .car{animation:bob .35s ease-in-out infinite alternate}@keyframes bob{to{transform:translateY(1.5px)}}
+    .wh{transform-box:fill-box;transform-origin:center;animation:spin .25s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    .live{animation:lv 1.4s ease-in-out infinite}@keyframes lv{50%{opacity:.25}}
+  </style>
+  <rect width="1200" height="340" rx="22" fill="url(#bg)"/><rect width="1200" height="340" rx="22" fill="url(#glow)"/>
+  <rect x="0" y="0" width="1200" height="8" fill="url(#chk)" opacity=".18"/><rect x="0" y="332" width="1200" height="8" fill="url(#chk)" opacity=".18"/>
+
+  <text x="60" y="92" class="t" font-size="76" font-weight="800" font-style="italic" fill="#FFFFFF" letter-spacing="-2">PIT WALL</text>
+  <rect x="62" y="104" width="120" height="5" fill="#E10600"/>
+  <text x="62" y="142" class="t" font-size="21" fill="#FCA5A5">Replay real Formula 1 races, lap by lap</text>
+  <text x="62" y="172" class="m" font-size="14" fill="#F87171" opacity=".85">GPS track map · live leaderboard · tyre strategy</text>
+
+  <!-- original open-wheel car, side view, facing right -->
+  <g transform="translate(120 186)">
+    <line class="sp" x1="-40" y1="58" x2="40" y2="58" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>
+    <line class="sp s2" x1="-20" y1="78" x2="90" y2="78" stroke="#E10600" stroke-width="2.5"/>
+    <line class="sp s3" x1="-30" y1="98" x2="50" y2="98" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <g class="car">
+      <path d="M4 26 H50 V36 H4 Z" fill="#E5E7EB"/><path d="M12 36 H20 V88 H12 Z" fill="#9CA3AF"/>
+      <path d="M30 104 L30 76 L118 64 L146 40 L176 40 L190 60 L244 62 L262 70 L340 84 L404 94 L406 104 Z" fill="url(#body)"/>
+      <path d="M96 92 L250 88 L262 100 L96 104 Z" fill="#7F1D1D"/>
+      <path d="M150 44 L172 44 L182 58 L146 58 Z" fill="#111"/>
+      <path d="M196 62 Q224 34 252 64" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+      <path d="M130 82 L330 86" stroke="#fff" stroke-width="3" stroke-opacity=".85"/>
+      <text x="270" y="80" class="t" font-size="15" font-weight="800" font-style="italic" fill="#fff">17</text>
+      <path d="M352 104 H418 V112 H352 Z" fill="#E5E7EB"/>
+      <g class="wh"><circle cx="82" cy="104" r="30" fill="#0B0B0B" stroke="#27272A" stroke-width="7"/><path d="M82 82 V126 M60 104 H104" stroke="#F5B841" stroke-width="2.5"/></g>
+      <g class="wh"><circle cx="330" cy="106" r="26" fill="#0B0B0B" stroke="#27272A" stroke-width="7"/><path d="M330 86 V126 M310 106 H350" stroke="#F5B841" stroke-width="2.5"/></g>
+    </g>
+  </g>
+
+  <!-- track map -->
+  <use href="#trk" fill="none" stroke="#3F3F46" stroke-width="10" stroke-linejoin="round"/>
+  <use href="#trk" fill="none" stroke="#71717A" stroke-width="2" stroke-dasharray="3 8"/>
+  <circle r="7" fill="#FF3B30" filter="url(#gl)"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#trk"/></animateMotion></circle>
+  <circle r="7" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="6.2s" begin="-.4s" repeatCount="indefinite"><mpath href="#trk"/></animateMotion></circle>
+  <circle r="7" fill="#F97316" filter="url(#gl)"><animateMotion dur="6.4s" begin="-.9s" repeatCount="indefinite"><mpath href="#trk"/></animateMotion></circle>
+  <circle r="7" fill="#A3E635" filter="url(#gl)"><animateMotion dur="6.6s" begin="-1.5s" repeatCount="indefinite"><mpath href="#trk"/></animateMotion></circle>
+
+  <!-- mini leaderboard -->
+  <g class="m" font-size="12">
+    <rect x="560" y="210" width="190" height="104" rx="10" fill="#0A0A0F" fill-opacity=".8" stroke="#3F3F46"/>
+    <circle class="live" cx="578" cy="228" r="4" fill="#E10600"/><text x="590" y="232" fill="#FCA5A5">LAP 42/57</text>
+    <rect x="574" y="244" width="4" height="14" fill="#FF3B30"/><text x="586" y="256" fill="#fff">P1</text><text x="690" y="256" fill="#A1A1AA">leader</text>
+    <rect x="574" y="264" width="4" height="14" fill="#22D3EE"/><text x="586" y="276" fill="#fff">P2</text><text x="690" y="276" fill="#A1A1AA">+1.284</text>
+    <rect x="574" y="284" width="4" height="14" fill="#F97316"/><text x="586" y="296" fill="#fff">P3</text><text x="690" y="296" fill="#A1A1AA">+3.910</text>
+  </g>
+</svg>
