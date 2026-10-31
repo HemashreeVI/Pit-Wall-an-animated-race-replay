@@ -1,0 +1,9 @@
+[
+  {
+    "key": "demo",
+    "year": 2026,
+    "name": "Demo Grand Prix (synthetic)",
+    "circuit": "Pit Wall Park",
+    "synthetic": true
+  }
+]
