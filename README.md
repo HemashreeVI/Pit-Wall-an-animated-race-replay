@@ -94,41 +94,64 @@ flowchart LR
 
 ## ⚡ Run locally
 
+No build step and no dependencies: just Python 3 and a browser.
+
 ```bash
-git clone https://github.com/HemashreeVI/pit-wall.git
-cd pit-wall
+git clone https://github.com/HemashreeVI/pit-wall-an-animated-race-replay.git
+cd pit-wall-an-animated-race-replay
 
-# download a race (one time)
-python fetch_race.py --year 2024 --race "Monza"
-
-# start the app
+# start the app: a synthetic demo race is included, so it works straight away
 python -m http.server 8000     # then open http://localhost:8000
 ```
+
+Add real races from OpenF1 (each one is downloaded once and then shows up in the race picker):
+
+```bash
+python fetch_race.py --list 2024                     # see the season's races
+python fetch_race.py --year 2024 --race "Monza"      # ~5 min, paced for the free tier
+```
+
+> 🧪 The bundled **Demo Grand Prix** (`data/demo/`) uses a fictional circuit, drivers and teams made by `generate_demo.py`, and the app labels it **DEMO DATA**. Run `python generate_demo.py --seed 7` to make a different one.
+
+**Controls:** `Space` play/pause · `←` `→` seek 10 s (`Shift` for 60 s) · `1`–`5` speed (1×, 2×, 5×, 10×, 30×) · click a car or a leaderboard row for its driver card.
 
 ## 🗂️ Project structure
 
 ```
 pit-wall/
 ├── fetch_race.py       # downloads one race from OpenF1 into data/
-├── data/               # saved races (JSON)
+├── generate_demo.py    # makes the synthetic demo race (same format)
+├── data/
+│   ├── races.json      # index used by the race picker
+│   └── <race>/         # meta, drivers, laps, positions, intervals,
+│                       # stints, pits, track, locations, results (.json)
 ├── index.html          # the pit wall screen
 ├── css/style.css       # theme and animations
 └── js/
-    ├── replay.js       # the race clock: play, pause, speed
+    ├── data.js         # loads a race, answers "where was everyone at time t?"
+    ├── replay.js       # the race clock: play, pause, seek, speed
     ├── trackmap.js     # draws the circuit and moving cars
-    ├── leaderboard.js  # animated positions and gaps
-    └── tyres.js        # tyre strategy chart
+    ├── leaderboard.js  # animated positions, gaps, tyres, pit flashes
+    ├── tyres.js        # tyre strategy chart
+    ├── charts.js       # driver cards and head-to-head charts
+    ├── intro.js        # lights-out intro
+    └── main.js         # wires it all together
 ```
 
 ## 🗺️ Roadmap
 
-- [ ] **Step 1:** Fetch one race and save it as JSON
-- [ ] **Step 2:** Draw the circuit from GPS points
-- [ ] **Step 3:** Moving cars and the replay controls
-- [ ] **Step 4:** Animated leaderboard with gaps
-- [ ] **Step 5:** Tyre strategy chart and driver cards
-- [ ] **Step 6:** Head-to-head mode and the intro animation
-- [ ] *Stretch:* race picker for every 2023+ race, team-radio clips at key moments
+- [x] **Step 1:** Fetch one race and save it as JSON
+- [x] **Step 2:** Draw the circuit from GPS points
+- [x] **Step 3:** Moving cars and the replay controls
+- [x] **Step 4:** Animated leaderboard with gaps
+- [x] **Step 5:** Tyre strategy chart and driver cards
+- [x] **Step 6:** Head-to-head mode and the intro animation
+- [x] *Stretch:* race picker (lists every race you have downloaded)
+- [ ] *Stretch:* one-click download of every 2023+ race, team-radio clips at key moments
+
+## 🚀 Deploy to GitHub Pages
+
+Everything is static. Commit the `data/` folders you want to show, then enable **Settings → Pages → Deploy from branch → `main` / root**.
 
 ## 🧰 Built with
 
